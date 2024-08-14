@@ -57,8 +57,8 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                ThemesPlugin::make()
-                    ->canViewThemesPage(fn () => true),
+                ThemesPlugin::make()->canViewThemesPage(fn () => true),
+                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
             ]);
     }
 }
