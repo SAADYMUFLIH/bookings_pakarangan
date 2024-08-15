@@ -26,15 +26,21 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                ->required(),
+                    ->required(),
                 Forms\Components\TextInput::make('email')
-                ->required()
-                ->email(),
+                    ->required()
+                    ->email(),
                 Forms\Components\Select::make('roles')
-                ->relationship('roles', 'name')
-                ->multiple()
-                ->preload()
-                ->searchable()
+                    ->relationship('roles', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->searchable(),
+                Forms\Components\TextInput::make('password')
+                    ->required()
+                    ->password()
+                    ->minLength(8)
+                    ->label('Password')
+                    ->placeholder('Enter your password'),
             ]);
     }
 
@@ -44,8 +50,11 @@ class UserResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('role'),
-               
+                // Tables\Columns\TextColumn::make('roles.name')
+                // ->label('Role')
+                // ->formatStateUsing(function ($state) {
+                //     return $state ? $state->name : 'No Role';
+                // }),
             ])
             ->filters([
                 //

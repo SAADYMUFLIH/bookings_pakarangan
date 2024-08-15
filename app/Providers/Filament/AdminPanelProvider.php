@@ -59,6 +59,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 ThemesPlugin::make()->canViewThemesPage(fn () => true),
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
-            ]);
+            ])
+            ->databaseNotifications();
     }
 }
